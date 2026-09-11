@@ -21,7 +21,7 @@ async function analyze(signal) {
   return JSON.parse(text);
 }
 
-const server = http.createServer(async (request, response) => {
+async function handleRequest(request, response) {
   if (request.method === 'POST' && request.url === '/api/analyze') {
     try { const body = JSON.parse(await readBody(request)); if (!body.signal?.trim()) return send(response, 400, JSON.stringify({ error: 'Signal is required' })); return send(response, 200, JSON.stringify(await analyze(body.signal))); } catch (error) { return send(response, 502, JSON.stringify({ error: error.message })); }
   }
@@ -29,5 +29,10 @@ const server = http.createServer(async (request, response) => {
   const filePath = path.join(root, requested);
   if (!filePath.startsWith(root) || !fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) return send(response, 404, 'Not found', 'text/plain; charset=utf-8');
   send(response, 200, fs.readFileSync(filePath), mime[path.extname(filePath)] || 'application/octet-stream');
-});
-server.listen(port, () => console.log(`Signal Bridge running at http://localhost:${port}`));
+}
+
+if (require.main === module) {
+  http.createServer(handleRequest).listen(port, () => console.log(`Signal Bridge running at http://localhost:${port}`));
+}
+
+module.exports = handleRequest;
