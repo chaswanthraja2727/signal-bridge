@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signal Bridge | Human intent to action</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Signal Bridge home">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span>signal<span class="brand-dot">.</span>bridge</span>
+      </a>
+      <div class="topbar-center"><span class="status-dot"></span> GEMINI OPERATIONS LAYER <span class="divider">/</span> LIVE</div>
+      <div class="topbar-right"><button class="help" aria-label="Open help">?</button><button class="avatar" aria-label="Open operator profile">AK</button><span class="operator">Ava Kim <small>operator</small></span><button class="icon-button" aria-label="Open menu">···</button></div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow"><span class="eyebrow-line"></span> UNIVERSAL BRIDGE <span class="eyebrow-line"></span></div>
+        <h1>Make the messy<br><em>matter.</em></h1>
+        <p class="hero-copy">Turn real-world signals into clear, verified actions.<br>When every second and detail counts.</p>
+        <div class="hero-meta"><span>01 / INTAKE</span><span>02 / STRUCTURE</span><span>03 / ACT</span></div>
+      </section>
+
+      <section class="workspace-grid">
+        <div class="intake-panel panel">
+          <div class="panel-heading"><div><span class="step-number">01</span><h2>Bring in a signal</h2></div><span class="panel-status">READY</span></div>
+          <p class="panel-description">Drop anything unstructured. We will find the signal inside it.</p>
+          <div class="source-tabs" role="tablist" aria-label="Input source">
+            <button class="source-tab active" data-source="note"><span class="tab-icon">✦</span> Note</button>
+            <button class="source-tab" data-source="voice"><span class="tab-icon">◉</span> Voice</button>
+            <button class="source-tab" data-source="photo"><span class="tab-icon">▧</span> Photo</button>
+            <button class="source-tab" data-source="file"><span class="tab-icon">↥</span> File</button>
+          </div>
+          <div class="input-wrap"><textarea id="signalInput" aria-label="Describe a situation" placeholder="Describe a situation, concern, or observation..."></textarea><div class="input-footer"><span id="charCount">0 / 500</span><span>⌘ + Enter to process</span></div></div>
+          <input id="fileInput" type="file" hidden>
+          <div class="sample-row"><span>TRY A SIGNAL</span><button class="sample-chip" data-sample="The river has risen fast after last night's rain. People near the east bank say the footbridge is underwater and an elderly neighbour may still be in the lower house.">Flood risk</button><button class="sample-chip" data-sample="Several people on Oak Street are coughing and the air smells like burnt plastic. Visibility is low near the school entrance.">Air quality</button><button class="sample-chip" data-sample="My prescription is running out tomorrow and the clinic phone keeps going to voicemail. I cannot get across town without help.">Care access</button></div>
+          <button id="processButton" class="process-button"><span>Translate to action</span><span class="button-arrow">↗</span></button>
+        </div>
+
+        <div class="results-panel panel" id="resultsPanel">
+          <div class="panel-heading"><div><span class="step-number">02</span><h2>See what matters</h2></div><span class="confidence"><span class="confidence-dot"></span><span id="confidenceText">WAITING FOR INPUT</span></span></div>
+          <div class="empty-state" id="emptyState"><div class="empty-orbit"><span class="orbit-center">✦</span></div><h3>Your signal, clarified.</h3><p>Structured context, risk, and next steps will appear here.</p></div>
+          <div class="analysis-content hidden" id="analysisContent">
+            <div class="classification"><span class="label">DETECTED SITUATION</span><div class="classification-title"><h3 id="incidentTitle">Community flood risk</h3><span class="priority-badge" id="priorityBadge">HIGH PRIORITY</span></div><p id="incidentSummary"></p></div>
+            <div class="fact-grid"><div class="fact"><span class="fact-label">LOCATION</span><strong id="locationFact">East bank · Oak district</strong></div><div class="fact"><span class="fact-label">TIME SENSITIVITY</span><strong id="timeFact">Next 2 hours</strong></div><div class="fact"><span class="fact-label">PEOPLE AFFECTED</span><strong id="peopleFact">Unconfirmed</strong></div><div class="fact"><span class="fact-label">SOURCE QUALITY</span><strong class="verified" id="sourceFact">● Corroborated</strong></div></div>
+            <div class="signals"><span class="label">SIGNALS FOUND</span><div class="signal-tags"><span>WATER LEVEL</span><span>ACCESS BLOCKED</span><span>VULNERABLE PERSON</span></div></div>
+            <div class="verification"><span class="verification-icon">✓</span><div><strong>Cross-checked against local alerts</strong><p>Last verified 34 seconds ago · 3 nearby reports match</p></div><button class="small-link">View sources ↗</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="action-panel panel" id="actionPanel">
+        <div class="panel-heading"><div><span class="step-number">03</span><h2>Move with confidence</h2></div><span class="action-count" id="actionCount">3 ACTIONS READY</span></div>
+        <div class="action-content" id="actionContent"><div class="action-placeholder">Process a signal to generate a prioritized action plan.</div></div>
+      </section>
+    </main>
+    <footer><span>BUILT FOR THE MOMENTS BETWEEN HUMAN INTENT AND COMPLEX SYSTEMS</span><span>PRIVACY FIRST <i></i> AUDITABLE <i></i> HUMAN IN THE LOOP</span></footer>
+  </div>
+  <div class="toast" id="toast" role="status">Signal translated successfully</div>
+  <script src="app.js"></script>
+</body>
+</html>
